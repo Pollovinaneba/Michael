@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    string s; // символ
+    string str; //переменная типа string, отвечающая за строку
+    cout << "Введите символ" << endl;
+    do //проверка на символ
+    {
+        getline(cin, s);
+
+        if (s.length() > 1) cout << "Это не символ, повторите попытку" << endl;
+
+    } while (s.length() > 1);
+    cout << "Символ введен" << endl;
+
+    cout << "Введите строку" << endl;
+    do //проверка на строку
+    {
+        getline(cin, str);
+        if (str.length() <= 1) cout << "Один символ не является строкой, повторите попытку" << endl;
+    } while (str.length() <= 1);
+    cout << "Строка введена" << endl;
+
+    int z = 0, from = 0; //переменная z для позиции символа в строке, from для предотвращения зацикливания
+    while ((z = str.find(s, from)) != string::npos) //испольуется find для поиска символа в строке
+    {
+        cout << "Символ находится на позиции " << z+1 << endl;
+        from = z + 1;
+    }
+    if (from == 0) cout << "символ отсутствует" << endl;
+
+    system("pause");
+    return 0;
+}
